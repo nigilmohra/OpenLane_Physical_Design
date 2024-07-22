@@ -105,3 +105,70 @@ OpenLANE contains many sub-states. The detailed flow of the stages and sub-stage
 | -------- | --------------------------------------------- |
 | `Magic`  | Performs design rule check and antenna checks |
 | `Netgen` | Performs layout versus schematic checks       |
+
+# Floor Planning (PnR) and Introduction to Library Cells
+## Floor Planning
+
+### Utilization Factor and Aspect Ratio
+**Utilization Factor** is a measure of how efficiently the available area is being used by the standard cells and pre-placed cells. It is defined as the ratio of the area occupied by the cells to the total available area. **Aspect Ratio** is the ratio of the height to the width of the area occupied.
+### Pre-Placed Cells
+Pre-placed cells in VLSI physical design refer to critical or frequently-used components that are strategically placed in specific locations on the chip layout before the general placement of standard cells. This strategic placement helps to optimize performance, minimize routing complexity, and ensure the reliability of the integrated circuit.
+### Decoupling Capacitors
+In VLSI physical design, decoupling capacitors play a critical role in maintaining signal integrity and ensuring reliable circuit operation. These capacitors are strategically placed to mitigate noise and voltage fluctuations caused by switching activities in the circuit.
+
+When pre-placed cells in a VLSI design switch states, they cause sudden changes in current demand. This rapid switching can induce noise and create voltage drops or spikes, potentially pushing the output into undefined regions outside the acceptable noise margins. To combat this, decoupling capacitors are used to stabilize the power supply voltage. The functions of decoupling capacitor include charge storage, noise reduction and voltage stabilization, ensuring that the circuit operates reliable within its noise margins, even under the stress of high frequency switching.
+### Power Planning
+In VLSI Physical Design (PD), effective power planning is essential for maintaining signal integrity and overall circuit performance. When multiple logic blocks are connect through a shared bus and powered by a single voltage source, voltage drop and **ground bounce** can occur. These issues arise because the capacitors in the circuit, which charge and discharge during operation, can create significant voltage variations if they share a common ground or power source without individual decoupling capacitors.
+
+**To address these challenges, each logic block should be connected to dedicated V$_{DD}$ and V$_{SS}$ lines**. This approach minimizes voltage drops and ground bounce by ensuring that the power supply and ground return paths are independent for each block. Dedicated power connections help maintain stable voltage level, reduce noise, and ensure that the circuit operates reliably within its noise margins. Effective power planning is crucial for optimizing power distribution and minimizing the adverse effects of simultaneous switching noise in VLSI circuits. 
+## Placement
+### Pin Placement
+Pin placement in VLSI physical design is a crucial step that directly impacts the overall performance, manufacturability, and reliability of the integrated circuit (IC). Pin placement refers to the strategic positioning of Input/Output (I/O) pins, power pins, and ground pins on the chip layout. Effective pin placement can minimize signal delay, reduce power consumption, and enhance signal integrity.
+1. **Peripheral Pin Placement** : Pins are placed along the periphery of the chip. Common in traditional wire bonding packaging and standard cell-based design.
+2. **Area Pin Placement** : Pins are distributed across the entire area of the chip, not just on the edges. Used in flip-chip packaging and advanced VLSI designs.
+3. **Hierarchical Pin Placement** : Pins are placed based on hierarchical design approach, where the design is divided into blocks or modules, and pins are placed accordingly.
+4. **IO Cluster Pin Placement** : Similar types of IO pins are grouped together in clusters. Used to facilitate specific design requirements, such as minimizing crosstalk for high-speed signals.
+5. **Mixed Pin Placement** : A combination of peripheral and area pin placement. Used to balance the advantages and disadvantages of both peripheral and area pin placement techniques. 
+### Placement Optimization
+Placement optimization in VLSI physical design involves determining the optimal positions of various cells (standard cells, macros, I/O pads) within the chip layout. The goal is to minimize critical metrics such as wire length, delay, power consumption, and area, while ensuring that design rules and constraints are met. Effective placement can significantly enhance the performance and manufacturability of the chip.
+
+| Objective of Placement Optimization |                                                                                               |
+| ----------------------------------- | --------------------------------------------------------------------------------------------- |
+| Minimize Wire Length                | Reduce the total wire length and help reduce signal delay, power consumption, and congestion. |
+| Optimize Timing                     | Ensures critical path are minimized to meet timing constraints.                               |
+| Reduce Congestion                   | Avoiding routing congestion to ensure signal integrity and manufacturability.                 |
+| Minimize Power Consumption          | Reduced dynamic and leakage power by optimizing the placement.                                |
+| Enhance Thermal Distribution        | Ensuring uniform heat distribution to prevent hotspot.                                        |
+| Satisfy Design Rules                | Ensuring compliance with design rules set by fabrication technology.                          |
+
+| Placement Optimization Algorithms | Description                                                                                                                                     | Algorithm                                                                                                                                                   |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Partitioning Based Placement      | The design is recursively divided into smaller partitions, and cells are placed within these partitions.                                        | **Kernighan-Lin (KL) Algorithm** iteratively improves the partitioning by swapping pairs of cells to minimize cut size.                                     |
+|                                   |                                                                                                                                                 | **Fiduccia-Mattheyses (FM) Algorithm** is an efficient heuristic that improves upon KL algorithm by making single-cell moves instead of swaps.              |
+| Simulated Annealing               | A probabilistic technique that explores the solution space by accepting worse solution with a certain probability to escape local minima.       | The algorithm starts with initial placement and iteratively makes random perturbations. The acceptance probability of a worse solution decreases over time. |
+| Quadratic Placement               | Models the placement problem as a quadratic optimization problem, minimizing a quadratic objective function representing the total wire length. | **Gordon's Method** solves a system of linear equations to find the optimal position of cells.                                                              |
+|                                   |                                                                                                                                                 | **Kraftwerk2** is an improved version that iteratively refines the placement to handle fixed cells and congestion.                                          |
+| Analytical Placement              | Uses mathematical models to derive an optimal placement.                                                                                        | **Forced-Directed Placement** models nets as springs and used force equilibrium to find cell positions.                                                     |
+|                                   |                                                                                                                                                 | **Numerical Solvers** solves non-linear equations to minimize a global cost function representing wire length and congestion.                               |
+| Min-Cut Placement                 | Divides the circuit into smaller regions to minimize the number of interconnections (cuts) between regions.                                     | **Recursive Bisection** continuously divides the design into two regions to minimize cuts, placing cells in the resulting regions.                          |
+| Modern Approaches                 |                                                                                                                                                 | **Machine Learning Based Placement** technique uses ML to predict optimal placement solution based on historical data and design characteristics.           |
+|                                   |                                                                                                                                                 | **Genetic Algorithms** uses evolutionary principles to explore placement solution space by combining and mutating placement solutions.                      |
+
+## Cell Design Flow
+Cell design flow is a systematic process for creating a standard cells, which are the building blocks used to design larger integrated circuits. Standard cells include logic gates, flip-flops, multiplexers, and other fundamental components. The cell design flow ensures that these cells meet specific design criteria for functionality, performance, power, and area, and are manufacturable.
+1. **Specification and Requirements** defines the functionality, performance targets, power consumption, area constraints, and other design specifications for the cell. Determines the process technology to be used.
+2. **Circuit Design** contains **Schematic Design**, **Transistor Level Design** and **Simulation**. 
+	1. In Schematic Design the schematic representation of the cell, shows the transistors connection for a particular logic function. 
+	2. In Transistor-Level Design appropriate transistor sizes and types, power and performance specification are provided.
+	3. In Simulation, pre-layout simulation is carried out using tools like SPICE to verify functionality and performance under different conditions.
+3. **Layout Design** contains **Layout Creation**, **Design Rule Checking** and **Layout Versus Schematic (LVS)**.
+	1. In Layout Creation, the schematic is translated to a physical layout, with transistor arrangement, interconnections, and other components within the area constraints. 
+	2. Design Rule Checking (DRC) ensures the layout adheres to the foundry's design rules for manufacturing.
+	3. Layout Versus Schematic verifies that the layout matches the schematic in terms of connectivity and functionality.
+4. **Parasitic Extraction** extracts parasitic elements like capacitance, resistance and inductance from the layout to create more accurate model of the cell's electrical behavior.
+5. **Post-Layout Simulation** performs simulation with extracted parasites to ensure that the cell meets performance and power specifications in its final layout form.
+6. **Characterization** generates timing, power, and noise models for use in larger designs, These models include **Timing and Delay Models**. **Dynamic and Static Power Models** and **Noise Models**.
+7. **Library Preparation** creates the necessary library files, including **Liberty Files**`.lib` that contains the timing, power, and noise models. **LEF Files** `lef` describes the cell's physical layout, including pin position and routing blockages.  **GDSII/OASIS Files** provide the final geometric representation of the cell for manufacturing.
+8. **Verification and Validation** includes **Functional Verification**, **Physical Verification** and **Sign-Off Checks**.
+9. **Release and Documentation** finalizes the cell and associated documentations. 
+10. **Library Integration** is the final procedure that integrated the cell into standard cell libraries used by the design tools for PnR, Synthesis and Timing Analysis.
