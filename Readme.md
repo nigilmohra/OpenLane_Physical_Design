@@ -19,5 +19,4 @@ This repository contains steps to use OpenLane with the SKY130nm PDK for GDSII g
 The above list of tools is required for various tasks in physical VLSI design. Each tool in itself has a number of system requirements and requires various supporting tools to be installed. Installing each tool one after the other is efficient. This is made easy by using some custom scripts that setup the required tools and environments for them in just a few easy steps. To install the required tools, the below link can be referred to.
 | Page                                                                            | Installed Software                                               |
 | ------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [VSDFlow](https://github.com/kunalg123/vsdflow)                                 | Yosys, Magic, OpenTimer, OpenSTA and some other supporting tools |
-| [OpenLANE Build Scripts](https://github.com/nickson-jose/openlane_build_script) | OpenROAD and some supporting tools                               |
+| [OpenLANE Ubuntu Installation](https://openlane.readthedocs.io/en/latest/getting_started/installation/installation_ubuntu.html) | Complete list of softwares from the above table |
