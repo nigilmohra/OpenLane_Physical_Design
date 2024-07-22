@@ -53,7 +53,7 @@ Process Design Kit (PDK) is an essential collection of files and data provided b
 
 #### OpenLANE ASIC Flow
  
-|  ![[The OpenLane Flow.png]]   |
+|  ![The OpenLane Flow](https://github.com/user-attachments/assets/b03e0754-2080-40a5-a2a4-89e5f48ca378)|
 | :---------------------------: |
 | *Figure 1. The OpenLane Flow* |
 
