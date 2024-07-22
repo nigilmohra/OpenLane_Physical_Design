@@ -14,3 +14,10 @@ This repository contains steps to use OpenLane with the SKY130nm PDK for GDSII g
 | [Magic VLSI](http://opencircuitdesign.com/magic/)                  | Layout Tool                                                                                                                                                                                 |
 | [NGSPICE](https://github.com/imr/ngspice)                          | SPIECE Extraction and Simulation                                                                                                                                                            |
 | [SPEF](https://github.com/HanyMoussa/SPEF_EXTRACTOR)               | Generation of Standard Parasitic Extraction Format ([SPEF](https://www.physicaldesign4u.com/2020/05/standard-parasitic-extraction-format.html)) File from Design Exchange Format (DEF) File |
+
+# Installation
+The above list of tools is required for various tasks in physical VLSI design. Each tool in itself has a number of system requirements and requires various supporting tools to be installed. Installing each tool one after the other is efficient. This is made easy by using some custom scripts that setup the required tools and environments for them in just a few easy steps. To install the required tools, the below link can be referred to.
+| Page                                                                            | Installed Software                                               |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [VSDFlow](https://github.com/kunalg123/vsdflow)                                 | Yosys, Magic, OpenTimer, OpenSTA and some other supporting tools |
+| [OpenLANE Build Scripts](https://github.com/nickson-jose/openlane_build_script) | OpenROAD and some supporting tools                               |
