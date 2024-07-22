@@ -65,3 +65,43 @@ OpenLANE is an automated RTL to GDSII flow which includes various open-source co
 	2. Interactive
 		It performs the flow one at a time.
 OpenLANE contains many sub-states. The detailed flow of the stages and sub-stages are given below.
+
+##### Synthesis
+| Tool      | Application                                               |
+| --------- | --------------------------------------------------------- |
+| `Yosys`   | RTL Synthesis                                             |
+| `ABC`     | Technology Mapping                                        |
+| `OpenSTA` | Static Time Analysis - generates timing and power reports |
+##### Floorplan and Power Distribution Network (PDN) 
+| Tool       | Application                                                                                                    |
+| ---------- | -------------------------------------------------------------------------------------------------------------- |
+| `init_fp`  | Defines the core area for the macro as well as the rows (used for placement) and the tracks (used for routing) |
+| `ioplacer` | Places the macro input and output ports                                                                        |
+| `pdn`      | Generates the power distribution network                                                                       |
+| `tapcell`  | Insert welltap and decap cells in the floorplan                                                                |
+##### Placement
+| Tool         | Application                                                            |
+| ------------ | ---------------------------------------------------------------------- |
+| `RePLace`    | Performs global placement                                              |
+| `Resizer`    | Performs optional optimizations on the design                          |
+| `OpenPhySyn` | Performs timing optimization on the design                             |
+| `OpenDP`     | Performs detailed placement to legalize the globally placed components |
+##### Clock Tree Synthesis (CTS)
+| Tool        | Application                                |
+| ----------- | ------------------------------------------ |
+| `TritonCTS` | Synthesizes the clock distribution network |
+##### Routing
+| Tool             | Application                                                              |
+| ---------------- | ------------------------------------------------------------------------ |
+| `FastRoute`      | Performs global routing to generate a guide file for the detailed router |
+| `TritonRoute`    | Performs detailed routing                                                |
+| `SPEF-Extractor` | Performs SPEF extraction                                                 |
+##### GDSII Generation
+| Tool    | Application                                                  |
+| ------- | ------------------------------------------------------------ |
+| `Magic` | Streams out the final GDSII layout file from the routed file |
+##### Checks 
+| Tool     | Application                                   |
+| -------- | --------------------------------------------- |
+| `Magic`  | Performs design rule check and antenna checks |
+| `Netgen` | Performs layout versus schematic checks       |
