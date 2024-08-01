@@ -22,4 +22,4 @@ The above list of tools is required for various tasks in physical VLSI design. E
 | [OpenLANE Ubuntu Installation](https://openlane.readthedocs.io/en/latest/getting_started/installation/installation_ubuntu.html) | Complete list of softwares from the above table |
 
 # Common Issue
-I had similar error message when trying to use Yosis. Fixed by running command (as root) `xhost +local:*` before the docker run command, then once done with docker, ran the command `xhost -local:*` again to disable. Note that you will also have to run docker container as root and include --volume="$HOME/.Xauthority:/root/.Xauthority:rw"  in the docker run.
+I had similar error message when trying to use Yosis. Fixed by running command (as root) `xhost +local:*` before the docker run command, then once done with docker, ran the command `xhost -local:*` again to disable. Note that you will also have to run docker container as root and include `--volume="$HOME/.Xauthority:/root/.Xauthority:rw"`  in the docker run.
