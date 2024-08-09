@@ -77,3 +77,42 @@ To create a `config.tcl` file in the `designs` folder, use the script below. Rep
 ./flow.tcl -design <design_name> -init_design_config -add_to_designs -config_file config.tcl
 ```
 
+To modify the `config.tcl` file, follow these steps:
+
+1. **Open the File in `Vim` as Root User:**
+Use the following command to open the `config.tcl` file in `Vim` with root permissions:
+
+```sh
+sudo vim config.tcl
+ ```
+
+2. **Enter `INSERT MODE`:**
+Press `I` to enter `INSERT MODE` in `Vim`.
+
+3. **Make the Required Changes:**
+Update the `config.tcl` file with the following content:
+```tcl
+   set ::env(DESIGN_NAME) {fa}
+   set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/src/*.v]
+   set ::env(FP_CORE_UTIL) 0.05
+   set ::env(FP_ASPECT_RATIO) 0.5
+   set ::env(RUN_CTS) 0
+   set ::env(DESIGN_IS_CORE) {1}
+
+   set tech_specific_config "$::env(DESIGN_DIR)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl"
+   if { [file exists $tech_specific_config] == 1 } {
+       source $tech_specific_config
+   }
+```
+
+4. **Exit `INSERT MODE` and Save Changes:**
+Press `Esc` to exit `INSERT MODE`. To save the changes and exit `Vim`, type:
+
+```sh
+:wq
+```
+If an error is encountered while saving, add an exclamation mark to force the save and exit:
+
+```sh
+:wq!
+```
