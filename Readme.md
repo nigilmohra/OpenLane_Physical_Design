@@ -172,62 +172,42 @@ cp sky130A.lyt /home/nigil/OpenLane/designs/fa/runs/
 ```
 
 ### 3.1. Technology Node Setup
-To set up the technology node in `klayout`, In the menu bar, click on `Tools` ⮕ `Manage Technologies`. In the dialog box that appears, add the `sky130A.lyt` file. Press `OK` to confirm and exit the dialog. In the workspace, locate the technology node setting. Change the technology node from `default` to `sky130nm`. This will configure `klayout` to use the `sky130nm` technology node for your design files.
+To set up the technology node in `klayout`,
+
+1. In the menu bar, click on `Tools` ⮕ `Manage Technologies`.
+2. In the dialog box that appears, add the `sky130A.lyt` file.
+3. Press `OK` to confirm and exit the dialog.
+
+In the workspace, locate the technology node setting. Change the technology node from `default` to `sky130nm`. This will configure `klayout` to use the `sky130nm` technology node for your design files.
 
 ### 3.2. Checking the Layouts and Reports
 To check the various layout results in `klayout`, Add the Library Exchange File (LEF). 
 
-   - In the menu bar, click on `File` ⮕ `Reader Options`. A dialog box will appear.
-   - Navigate to the design folder, then to `runs` ⮕ `tmp`, and find the file `<design_name_min.lef`.
-   - Add this file to the dialog box under the `LEF/DEF` section.
-   - Press `OK` to confirm and exit the dialog box.
+1. In the menu bar, click on `File` ⮕ `Reader Options`. A dialog box will appear.
+2. Navigate to the design folder, then to `runs` ⮕ `tmp`, and find the file `<design_name_min.lef`.
+3. Add this file to the dialog box under the `LEF/DEF` section.
+4. Press `OK` to confirm and exit the dialog box.
 
    *Note: There may be multiple `.lef` files. Select the one that matches your process variation needs.*
 
-2. **View Design Results:**
+**To view the results, go to `File` ⮕ `Open` and navigate to the `results` folder inside the `runs` directory. Open any folder within `results` and select a `.def` file to view the layout in the workspace.** Similarly, the `GDSII` file will be located inside the `signoff` directory. Navigate to this directory and open the `.gds` file to view it.
 
-   - To view the results, go to `File` ⮕ `Open` and navigate to the `results` folder inside the `runs` directory.
-   - Open any folder within `results` and select a `.def` file to view the layout in the workspace.
 
-3. **View the `GDSII` File:**
-
-   - Similarly, the `GDSII` file will be located inside the `signoff` directory.
-   - Navigate to this directory and open the `GDSII` file to view it in the `klayout` workspace.
-
-This will allow viewing and analyzing various design results and layouts using `klayout`.
-
-|  ![[KLayout Full Adder Floorplan.png]]   |
+|  ![KLayout Full Adder Floorplan](https://github.com/user-attachments/assets/f87e680a-656a-4b24-920c-b71f3c0e76f4)|
 | :--------------------------------------: |
 | *Figure 1. KLayout Full Adder Floorplan* |
 
-##  Running with Constraints
+##  (Misc) Running with Constraints
 
-To run a design with constraints, follow these steps:
+To run a design with constraints, create a `.sdc` file. The `.sdc` (Synopsys Design Constraints) file, or `.xdc` (Xilinx Design Constraints) file, can be generated using Xilinx Vivado or an appropriate Synopsys tool. This file will specify the design constraints. Update the `config.tcl` File:
 
-1. **Create a `.sdc` File:**
-
-   The `.sdc` (Synopsys Design Constraints) file, or `.xdc` (Xilinx Design Constraints) file, can be generated using Xilinx Vivado or an appropriate Synopsys tool. This file will specify the design constraints.
-
-2. **Update the `config.tcl` File:**
-
-   Open the `config.tcl` file and append the following lines to include the constraints:
-
-   ```tcl
-   set ::env(BASE_SDC_FILE) $::env(DESIGN_DIR)/fa.sdc
-   set ::env(RUN_CTS) 1
-   set ::env(CLOCK_PERIOD) "100.000"
-   set ::env(CLOCK_PORT) "virtual_clk"
+```tcl
+set ::env(BASE_SDC_FILE) $::env(DESIGN_DIR)/fa.sdc
+set ::env(RUN_CTS) 1
+set ::env(CLOCK_PERIOD) "100.000"
+set ::env(CLOCK_PORT) "virtual_clk"
    ```
-
-   These settings will enable constraint processing, set the clock period, and specify the clock port.
-
-3. **Run the Design Flow:**
-
-   Follow the same procedures as before to generate the `GDSII` file. Running the design with constraints will produce detailed **Area, Timing, and Power** reports.
-
-4. **View Reports:**
-
-   The reports will be located in the `reports` folder inside the `runs` directory. Check this folder for the detailed reports on area, timing, and power.
+These settings will enable constraint processing, set the clock period, and specify the clock port. Follow the same procedures as before to generate the `GDSII` file. Running the design with constraints will produce detailed **Area, Timing, and Power** reports. The reports will be located in the `reports` folder inside the `runs` directory. Check this folder for the detailed reports on area, timing, and power.
 
 # References
 1. [OpenLANE : RTL-to-GDSII Flow - Part-1](https://www.youtube.com/watch?v=_AXknRBk4QI) 
