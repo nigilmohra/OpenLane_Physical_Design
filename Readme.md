@@ -76,6 +76,10 @@ To create a `config.tcl` file in the `designs` folder, use the script below. Rep
 ./flow.tcl -design <design_name> -init_design_config -add_to_designs -config_file config.tcl
 ```
 
+|![Docker Setup](https://github.com/user-attachments/assets/b7cf399d-4761-4e72-a51a-8d686c96b86c)|
+| :--------------------------------------: |
+| *Figure 1. Invoking Docker and Creating Config File* |
+
 ### 2.2.2. Modifying the Configuration File
 To modify the contents of the `config.tcl` file, open the file in `Vim` as root user.
 
@@ -196,7 +200,7 @@ To check the various layout results in `klayout`, add the Library Exchange File 
 
 |![Full Adder GDS](https://github.com/user-attachments/assets/16f3dd95-e201-4f51-bdb3-39a1dadcecd2)|
 | :--------------------------------------: |
-| *Figure 1. Full Adder GDS in KLayout* |
+| *Figure 2. Full Adder GDS in KLayout* |
 
 ##  (Miscellaneous) Running with Constraints
 
