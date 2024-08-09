@@ -1,5 +1,4 @@
 # Physical Design using OpenLANE SKY130 
-*A downloadable version of this file is also available*.
 
 # 1. Installating OpenLane v1.0
 To install the necessary tools, please refer to the link below. Follow the instructions provided and run the example given to verify that the OpenLANE tools are installed correctly. Ensure that all commands are executed as the `root` user.
@@ -141,7 +140,7 @@ source fa_synth.tcl
 
 If all steps are followed correctly, the **complete design flow is done**.
 
-## 3. Results
+# 3. Results
 To inspect the `Floorplan`, `Routing`, `Placement`, and complete `GDS` file, the `klayout` tool can be used. Use the following command to install the `klayout` tool:
 
    ```sh
@@ -173,7 +172,7 @@ In the `tech` directory, three `.lyt` files will be present. Copy the `sky130A.l
 cp sky130A.lyt /home/nigil/OpenLane/designs/fa/runs/
 ```
 
-### 3.1. Technology Node Setup
+## 3.1. Technology Node Setup
 To set up the technology node in `klayout`, follow these steps:
 
 1. In the menu bar, click on `Tools` ⮕ `Manage Technologies`.
@@ -182,7 +181,7 @@ To set up the technology node in `klayout`, follow these steps:
 
 In the workspace, locate the technology node setting. Change the technology node from `default` to `sky130nm`. This will configure `klayout` to use the `sky130nm` technology node for your design files.
 
-### 3.2. Checking the Layouts and Reports
+## 3.2. Checking the Layouts and Reports
 To check the various layout results in `klayout`, add the Library Exchange File (LEF) by follwing these steps:
 
 1. In the menu bar, click on `File` ⮕ `Reader Options`. A dialog box will appear.
