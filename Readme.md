@@ -172,7 +172,7 @@ cp sky130A.lyt /home/nigil/OpenLane/designs/fa/runs/
 ```
 
 ### 3.1. Technology Node Setup
-To set up the technology node in `klayout`,
+To set up the technology node in `klayout`, follow these steps:
 
 1. In the menu bar, click on `Tools` ⮕ `Manage Technologies`.
 2. In the dialog box that appears, add the `sky130A.lyt` file.
@@ -181,7 +181,7 @@ To set up the technology node in `klayout`,
 In the workspace, locate the technology node setting. Change the technology node from `default` to `sky130nm`. This will configure `klayout` to use the `sky130nm` technology node for your design files.
 
 ### 3.2. Checking the Layouts and Reports
-To check the various layout results in `klayout`, Add the Library Exchange File (LEF). 
+To check the various layout results in `klayout`, add the Library Exchange File (LEF) by follwing these steps:
 
 1. In the menu bar, click on `File` ⮕ `Reader Options`. A dialog box will appear.
 2. Navigate to the design folder, then to `runs` ⮕ `tmp`, and find the file `<design_name_min.lef`.
@@ -197,7 +197,7 @@ To check the various layout results in `klayout`, Add the Library Exchange File 
 | :--------------------------------------: |
 | *Figure 1. KLayout Full Adder Floorplan* |
 
-##  (Misc) Running with Constraints
+##  (Miscellaneous) Running with Constraints
 
 To run a design with constraints, create a `.sdc` file. The `.sdc` (Synopsys Design Constraints) file, or `.xdc` (Xilinx Design Constraints) file, can be generated using Xilinx Vivado or an appropriate Synopsys tool. This file will specify the design constraints. Update the `config.tcl` File:
 
