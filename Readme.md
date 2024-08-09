@@ -1,9 +1,9 @@
-# Physical Design using OpenLANE SKY130 
+# Physical Design using OpenLane SKY130 
 
-# 1. Installating OpenLANE v1.0
+# 1. Installating OpenLane v1.0
 To install the necessary tools, please refer to the link below. Follow the instructions provided and run the example given to verify that the OpenLANE tools are installed correctly. Ensure that all commands are executed as the `root` user.
 
-| OpenROAD and some supporting tools. | [OpenLANE Ubuntu Installation](https://openlane.readthedocs.io/en/latest/getting_started/installation/installation_ubuntu.html) |
+| OpenROAD and some supporting tools. | [OpenLane Ubuntu Installation](https://openlane.readthedocs.io/en/latest/getting_started/installation/installation_ubuntu.html) |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 
 During the initial `make smoke` test, some users might encounter the error: 
@@ -24,9 +24,9 @@ sudo apt-get install vim
 ```
 
 ## 2.1. Full Adder Design
-All design files with the `.v` extension are stored in the `src` folder within a directory named after the design inside the `designs` folder of the OpenLANE directory. For instance, the one-bit full adder, implemented in Verilog, will have its files in this structure, and the GDSII file is generated using the OpenLANE ASIC flow.
+All design files with the `.v` extension are stored in the `src` folder within a directory named after the design inside the `designs` folder of the OpenLane directory. For instance, the one-bit full adder, implemented in Verilog, will have its files in this structure, and the GDSII file is generated using the OpenLane ASIC flow.
 
-*Note: There are several methods to run the design using OpenLANE.*
+*Note: There are several methods to run the design using OpenLane.*
 
 Create a folder named `fa` inside the `designs` folder using the following command:
 
@@ -36,7 +36,7 @@ sudo mkdir fa
 
 To create the RTL file, either copy and paste the file directly into this folder or follow the alternative approach outlined below for a bit of extra fun!
 
-Inside the `OpenLANE/designs/fa/src` folder, open the terminal and type the following command to create a file for the one-bit full adder:
+Inside the `OpenLane/designs/fa/src` folder, open the terminal and type the following command to create a file for the one-bit full adder:
 
 ```sh
 cat > fa.v
@@ -58,7 +58,7 @@ Add or modify the RTL design for the full adder as needed. To save the changes a
 
 ## 2.2. Configuration File
 ### 2.2.1. Creating the Configuration File
-To run the one-bit full adder, a configuration file is required. Invoke the Docker container, inside the OpenLANE directory (which contains the `Makefile`), use the following command to invoke the Docker container:
+To run the one-bit full adder, a configuration file is required. Invoke the Docker container, inside the OpenLane directory (which contains the `Makefile`), use the following command to invoke the Docker container:
    
  ```sh
  sudo make mount
