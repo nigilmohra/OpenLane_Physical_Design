@@ -176,4 +176,46 @@ source fa_synth.tcl
 If all steps are followed correctly, the **complete design flow is done**.
 
 ## 3. Results
+To inspect the `Floorplan`, `Routing`, `Placement`, and complete `GDS` file, the `klayout` tool can be used. Here’s how to set it up:
 
+1. **Install `klayout`:**
+
+   Use the following command to install the `klayout` tool:
+
+   ```sh
+   sudo apt-get install klayout
+   ```
+
+2. **Open `klayout` and Set Up Process Technology:**
+
+   Launch `klayout`. The first step is to select the process technology `Sky130nm`.
+
+3. **Download the `lyt` File:**
+
+   To set up the process technology, follow these steps:
+
+   - Open a terminal in the `OpenLANE` folder.
+   - Switch to the root user by running:
+
+     ```sh
+     sudo su
+     ```
+
+   - Use the following commands to navigate and download the `lyt` file. Use `ls` to list directories and ensure accurate navigation. Note that commands to navigate and list directories are not explicitly shown here; verify directory names as needed.
+
+   | Command       | Purpose                                                                                                                    |
+   |---------------|----------------------------------------------------------------------------------------------------------------------------|
+   | `cd`          | Change directory.                                                                                                          |
+   | `pwd`         | Display the full pathname of the current directory.                                                                        |
+   | `ls -a`       | List all items, including hidden files, in the current directory.                                                          |
+   | `cd .volare`  | Navigate to the `.volare` directory.                                                                                       |
+   | `cd sky130A`  | Navigate to the `sky130A` directory.                                                                                       |
+   | `cd libs.tech`| Navigate to the `libs.tech` directory.                                                                                     |
+   | `cd klayout`  | Navigate to the `klayout` directory.                                                                                       |
+   | `cd tech`     | Navigate to the `tech` directory.                                                                                          |
+
+   In the `tech` directory, three `.lyt` files will be present. Copy the `sky130A.lyt` file to the design folder using:
+
+   ```sh
+   cp sky130A.lyt /home/nigil/OpenLane/designs/fa/runs/
+   ```
