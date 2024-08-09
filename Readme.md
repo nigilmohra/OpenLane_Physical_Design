@@ -219,3 +219,87 @@ To inspect the `Floorplan`, `Routing`, `Placement`, and complete `GDS` file, the
    ```sh
    cp sky130A.lyt /home/nigil/OpenLane/designs/fa/runs/
    ```
+
+### 3.1. Technology Node Setup
+
+To set up the technology node in `klayout`, follow these steps:
+
+1. **Open `klayout`:**
+
+   Launch the `klayout` tool.
+
+2. **Add the Design File:**
+
+   - In the menu bar, click on `Tools` ⮕ `Manage Technologies`.
+   - In the dialog box that appears, add the `sky130A.lyt` file.
+   - Press `OK` to confirm and exit the dialog.
+
+3. **Change the Technology Node:**
+
+   - In the workspace, locate the technology node setting.
+   - Change the technology node from `default` to `sky130nm`.
+
+This will configure `klayout` to use the `sky130nm` technology node for your design files.
+
+### 3.2. Checking the Layouts and Reports
+To check the various layout results in `klayout`, follow these steps:
+
+1. **Add the Library Exchange File:**
+
+   - Open `klayout`.
+   - In the menu bar, click on `File` ⮕ `Reader Options`. A dialog box will appear.
+   - Navigate to the design folder, then to `runs` ⮕ `tmp`, and find the file `<design_name_min.lef`.
+   - Add this file to the dialog box under the `LEF/DEF` section.
+   - Press `OK` to confirm and exit the dialog box.
+
+   *Note: There may be multiple `.lef` files. Select the one that matches your process variation needs.*
+
+2. **View Design Results:**
+
+   - To view the results, go to `File` ⮕ `Open` and navigate to the `results` folder inside the `runs` directory.
+   - Open any folder within `results` and select a `.def` file to view the layout in the workspace.
+
+3. **View the `GDSII` File:**
+
+   - Similarly, the `GDSII` file will be located inside the `signoff` directory.
+   - Navigate to this directory and open the `GDSII` file to view it in the `klayout` workspace.
+
+This will allow viewing and analyzing various design results and layouts using `klayout`.
+
+|  ![[KLayout Full Adder Floorplan.png]]   |
+| :--------------------------------------: |
+| *Figure 1. KLayout Full Adder Floorplan* |
+
+##  Running with Constraints
+
+To run a design with constraints, follow these steps:
+
+1. **Create a `.sdc` File:**
+
+   The `.sdc` (Synopsys Design Constraints) file, or `.xdc` (Xilinx Design Constraints) file, can be generated using Xilinx Vivado or an appropriate Synopsys tool. This file will specify the design constraints.
+
+2. **Update the `config.tcl` File:**
+
+   Open the `config.tcl` file and append the following lines to include the constraints:
+
+   ```tcl
+   set ::env(BASE_SDC_FILE) $::env(DESIGN_DIR)/fa.sdc
+   set ::env(RUN_CTS) 1
+   set ::env(CLOCK_PERIOD) "100.000"
+   set ::env(CLOCK_PORT) "virtual_clk"
+   ```
+
+   These settings will enable constraint processing, set the clock period, and specify the clock port.
+
+3. **Run the Design Flow:**
+
+   Follow the same procedures as before to generate the `GDSII` file. Running the design with constraints will produce detailed **Area, Timing, and Power** reports.
+
+4. **View Reports:**
+
+   The reports will be located in the `reports` folder inside the `runs` directory. Check this folder for the detailed reports on area, timing, and power.
+
+# References
+1. [OpenLANE : RTL-to-GDSII Flow - Part-1](https://www.youtube.com/watch?v=_AXknRBk4QI) 
+2. [OpenLANE : RTL-to-GDSII Flow - Part-2](https://www.youtube.com/watch?v=qJvRqasoxug) 
+3. [Adding Your Designs - OpenLANE Documentation](https://openlane.readthedocs.io/en/latest/usage/designs.html)
