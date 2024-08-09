@@ -111,50 +111,27 @@ If an error is encountered while saving, add an exclamation mark to force the sa
 ```
 
 ## 2.3. Running the Physical Design
-To streamline the design flow, follow these steps to create and use a `fa_synth.tcl` file:
-
-1. **Create the `fa_synth.tcl` File:**
-Use the following command to create the `fa_synth.tcl` file:
+To streamline the design flow and make it simpler, create the `fa_synth.tcl` file using the following command:
 
 ```sh
  cat > fa_synth.tcl
 ```
 
-After entering the command, press `Ctrl + D` to exit.
-
-2. **Edit the File with `Vim`:**
-Open the `fa_synth.tcl` file in `Vim`:
-
-```sh
-sudo vim fa_synth.tcl
-```
-
-Enter the following content into the file:
+After entering the command, press `Ctrl + D` to exit. Open the `fa_synth.tcl` file in `Vim` and enter the following contents into the file:
 
 ```tcl
-   package require openlane
-   prep -design fa -tag run1 -overwrite
-   run_synthesis
-   run_floorplan
-   run_placement
-   run_routing
-   run_magic
+package require openlane
+prep -design fa -tag run1 -overwrite
+run_synthesis
+run_floorplan
+run_placement
+run_routing
+run_magic
 ```
 
-Save the changes and exit `Vim` by pressing `Esc` and then typing:
+Save the changes and exit. 
 
-```sh
-:wq
-```
-
-If an error occurs while saving, use:
-
-```sh
-:wq!
-```
-
-3. **Run the Design Flow:**
-Enter `tcl` interactive mode again using the previously described steps. Then, execute the following command to run the entire design flow:
+To run the PD, enter `tcl` interactive mode again using the previously described steps. Then, execute the following command to run the entire design flow:
 
 ```tcl
 source fa_synth.tcl
@@ -163,77 +140,43 @@ source fa_synth.tcl
 If all steps are followed correctly, the **complete design flow is done**.
 
 ## 3. Results
-To inspect the `Floorplan`, `Routing`, `Placement`, and complete `GDS` file, the `klayout` tool can be used. Here’s how to set it up:
-
-1. **Install `klayout`:**
-
-   Use the following command to install the `klayout` tool:
+To inspect the `Floorplan`, `Routing`, `Placement`, and complete `GDS` file, the `klayout` tool can be used. Use the following command to install the `klayout` tool:
 
    ```sh
    sudo apt-get install klayout
    ```
 
-2. **Open `klayout` and Set Up Process Technology:**
+Launch `klayout`. The first step is to select the process technology `Sky130nm`. To set up the process technology, open terminal in the `OpenLANE` folder and switch to the root user by running:
 
-   Launch `klayout`. The first step is to select the process technology `Sky130nm`.
+```sh
+sudo su
+```
 
-3. **Download the `lyt` File:**
+Use the following commands to navigate and download the `lyt` file. Use `ls` to list directories and ensure accurate navigation. Note that commands to navigate and list directories are not explicitly shown here; verify directory names as needed.
 
-   To set up the process technology, follow these steps:
+| Command       | Purpose                                                                                                                    |
+|---------------|----------------------------------------------------------------------------------------------------------------------------|
+| `cd`          | Change directory.                                                                                                          |
+| `pwd`         | Display the full pathname of the current directory.                                                                        |
+| `ls -a`       | List all items, including hidden files, in the current directory.                                                          |
+| `cd .volare`  | Navigate to the `.volare` directory.                                                                                       |
+| `cd sky130A`  | Navigate to the `sky130A` directory.                                                                                       |
+| `cd libs.tech`| Navigate to the `libs.tech` directory.                                                                                     |
+| `cd klayout`  | Navigate to the `klayout` directory.                                                                                       |
+| `cd tech`     | Navigate to the `tech` directory.                                                                                          |
 
-   - Open a terminal in the `OpenLANE` folder.
-   - Switch to the root user by running:
+In the `tech` directory, three `.lyt` files will be present. Copy the `sky130A.lyt` file to the design folder.
 
-     ```sh
-     sudo su
-     ```
-
-   - Use the following commands to navigate and download the `lyt` file. Use `ls` to list directories and ensure accurate navigation. Note that commands to navigate and list directories are not explicitly shown here; verify directory names as needed.
-
-   | Command       | Purpose                                                                                                                    |
-   |---------------|----------------------------------------------------------------------------------------------------------------------------|
-   | `cd`          | Change directory.                                                                                                          |
-   | `pwd`         | Display the full pathname of the current directory.                                                                        |
-   | `ls -a`       | List all items, including hidden files, in the current directory.                                                          |
-   | `cd .volare`  | Navigate to the `.volare` directory.                                                                                       |
-   | `cd sky130A`  | Navigate to the `sky130A` directory.                                                                                       |
-   | `cd libs.tech`| Navigate to the `libs.tech` directory.                                                                                     |
-   | `cd klayout`  | Navigate to the `klayout` directory.                                                                                       |
-   | `cd tech`     | Navigate to the `tech` directory.                                                                                          |
-
-   In the `tech` directory, three `.lyt` files will be present. Copy the `sky130A.lyt` file to the design folder using:
-
-   ```sh
-   cp sky130A.lyt /home/nigil/OpenLane/designs/fa/runs/
-   ```
+```sh
+cp sky130A.lyt /home/nigil/OpenLane/designs/fa/runs/
+```
 
 ### 3.1. Technology Node Setup
-
-To set up the technology node in `klayout`, follow these steps:
-
-1. **Open `klayout`:**
-
-   Launch the `klayout` tool.
-
-2. **Add the Design File:**
-
-   - In the menu bar, click on `Tools` ⮕ `Manage Technologies`.
-   - In the dialog box that appears, add the `sky130A.lyt` file.
-   - Press `OK` to confirm and exit the dialog.
-
-3. **Change the Technology Node:**
-
-   - In the workspace, locate the technology node setting.
-   - Change the technology node from `default` to `sky130nm`.
-
-This will configure `klayout` to use the `sky130nm` technology node for your design files.
+To set up the technology node in `klayout`, In the menu bar, click on `Tools` ⮕ `Manage Technologies`. In the dialog box that appears, add the `sky130A.lyt` file. Press `OK` to confirm and exit the dialog. In the workspace, locate the technology node setting. Change the technology node from `default` to `sky130nm`. This will configure `klayout` to use the `sky130nm` technology node for your design files.
 
 ### 3.2. Checking the Layouts and Reports
-To check the various layout results in `klayout`, follow these steps:
+To check the various layout results in `klayout`, Add the Library Exchange File (LEF). 
 
-1. **Add the Library Exchange File:**
-
-   - Open `klayout`.
    - In the menu bar, click on `File` ⮕ `Reader Options`. A dialog box will appear.
    - Navigate to the design folder, then to `runs` ⮕ `tmp`, and find the file `<design_name_min.lef`.
    - Add this file to the dialog box under the `LEF/DEF` section.
