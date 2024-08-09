@@ -54,3 +54,26 @@ Add or modify the RTL design for the full adder as needed. To save the changes a
 :wq
 ```
 
+## 2.2. Creating the Configuration File
+To run the one-bit full adder, a configuration file is required. Follow these steps:
+1. **Invoke the Docker Container:**
+   Inside the OpenLANE directory (which contains the `Makefile`), use the following command to invoke the Docker container:
+ ```sh
+ sudo make mount
+ ```
+Once the Docker container is successfully invoked, you should see a confirmation message.
+
+2. **Enter `tcl` Interactive Mode:**
+Run the following command to enter `tcl` interactive mode:
+
+```tcl
+./flow.tcl -interactive
+```
+
+3. **Create the Configuration File:**
+To create a `config.tcl` file in the `designs` folder, use the script below. Replace `<design_name>` with the name of the main module, ensuring that it matches the module name and the file name of the RTL design:
+
+```tcl
+./flow.tcl -design <design_name> -init_design_config -add_to_designs -config_file config.tcl
+```
+
