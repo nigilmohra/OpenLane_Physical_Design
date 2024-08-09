@@ -32,6 +32,7 @@ Create a folder named `fa` inside the `designs` folder using the following comma
 ```sh
 sudo mkdir fa
 ```
+
 To create the RTL file, either copy and paste the file directly into this folder or follow the alternative approach outlined below for a bit of extra fun!
 
 Inside the `OpenLANE/designs/fa/src` folder, open the terminal and type the following command to create a file for the one-bit full adder:
@@ -58,7 +59,8 @@ Add or modify the RTL design for the full adder as needed. To save the changes a
 ### 2.2.1. Creating the Configuration File
 To run the one-bit full adder, a configuration file is required. Follow these steps:
 1. **Invoke the Docker Container:**
-   Inside the OpenLANE directory (which contains the `Makefile`), use the following command to invoke the Docker container:
+Inside the OpenLANE directory (which contains the `Makefile`), use the following command to invoke the Docker container:
+   
  ```sh
  sudo make mount
  ```
@@ -77,6 +79,7 @@ To create a `config.tcl` file in the `designs` folder, use the script below. Rep
 ```tcl
 ./flow.tcl -design <design_name> -init_design_config -add_to_designs -config_file config.tcl
 ```
+
 ### 2.2.2. Modifying the Configuration File
 To modify the `config.tcl` file, follow these steps:
 
@@ -92,6 +95,7 @@ Press `I` to enter `INSERT MODE` in `Vim`.
 
 3. **Make the Required Changes:**
 Update the `config.tcl` file with the following content:
+
 ```tcl
    set ::env(DESIGN_NAME) {fa}
    set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/src/*.v]
@@ -112,12 +116,14 @@ Press `Esc` to exit `INSERT MODE`. To save the changes and exit `Vim`, type:
 ```sh
 :wq
 ```
+
 If an error is encountered while saving, add an exclamation mark to force the save and exit:
 
 ```sh
 :wq!
 ```
-## 2.3. GDSII Creation
+
+## 2.3. Running the Physical Design
 To streamline the design flow, follow these steps to create and use a `fa_synth.tcl` file:
 
 1. **Create the `fa_synth.tcl` File:**
@@ -126,10 +132,12 @@ Use the following command to create the `fa_synth.tcl` file:
 ```sh
  cat > fa_synth.tcl
 ```
+
 After entering the command, press `Ctrl + D` to exit.
 
 2. **Edit the File with `Vim`:**
 Open the `fa_synth.tcl` file in `Vim`:
+
 ```sh
 sudo vim fa_synth.tcl
 ```
@@ -147,19 +155,25 @@ Enter the following content into the file:
 ```
 
 Save the changes and exit `Vim` by pressing `Esc` and then typing:
+
 ```sh
 :wq
 ```
 
 If an error occurs while saving, use:
+
 ```sh
 :wq!
 ```
 
 3. **Run the Design Flow:**
 Enter `tcl` interactive mode again using the previously described steps. Then, execute the following command to run the entire design flow:
+
 ```tcl
 source fa_synth.tcl
 ```
 
 If all steps are followed correctly, the **complete design flow is done**.
+
+## 3. Results
+
