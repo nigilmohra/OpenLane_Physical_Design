@@ -1,4 +1,4 @@
-# Physical Design using OpenLANE SKY130 
+# Physical Design using OpenLANE SKY130 (OpenLane v1.0)
 # 1. Installating OpenLane v1.0
 To install the necessary tools, please refer to the link below. Follow the instructions provided and run the example given to verify that the OpenLANE tools are installed correctly. Ensure that all commands are executed as the `root` user.
 
@@ -116,3 +116,49 @@ If an error is encountered while saving, add an exclamation mark to force the sa
 ```sh
 :wq!
 ```
+## 2.3. GDSII Creation
+To streamline the design flow, follow these steps to create and use a `fa_synth.tcl` file:
+
+1. **Create the `fa_synth.tcl` File:**
+Use the following command to create the `fa_synth.tcl` file:
+
+```sh
+ cat > fa_synth.tcl
+```
+After entering the command, press `Ctrl + D` to exit.
+
+2. **Edit the File with `Vim`:**
+Open the `fa_synth.tcl` file in `Vim`:
+```sh
+sudo vim fa_synth.tcl
+```
+
+Enter the following content into the file:
+
+```tcl
+   package require openlane
+   prep -design fa -tag run1 -overwrite
+   run_synthesis
+   run_floorplan
+   run_placement
+   run_routing
+   run_magic
+```
+
+Save the changes and exit `Vim` by pressing `Esc` and then typing:
+```sh
+:wq
+```
+
+If an error occurs while saving, use:
+```sh
+:wq!
+```
+
+3. **Run the Design Flow:**
+Enter `tcl` interactive mode again using the previously described steps. Then, execute the following command to run the entire design flow:
+```tcl
+source fa_synth.tcl
+```
+
+If all steps are followed correctly, the **complete design flow is done**.
