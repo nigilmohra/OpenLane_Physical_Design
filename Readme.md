@@ -188,7 +188,7 @@ To check the various layout results in `klayout`, Add the Library Exchange File 
 3. Add this file to the dialog box under the `LEF/DEF` section.
 4. Press `OK` to confirm and exit the dialog box.
 
-   *Note: There may be multiple `.lef` files. Select the one that matches your process variation needs.*
+*Note: There may be multiple `.lef` files. Select the one that matches your process variation needs.*
 
 **To view the results, go to `File` ⮕ `Open` and navigate to the `results` folder inside the `runs` directory. Open any folder within `results` and select a `.def` file to view the layout in the workspace.** Similarly, the `GDSII` file will be located inside the `signoff` directory. Navigate to this directory and open the `.gds` file to view it.
 
