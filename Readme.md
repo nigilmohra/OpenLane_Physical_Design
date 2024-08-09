@@ -1,6 +1,7 @@
 # Physical Design using OpenLANE SKY130 
 # 1. Installating OpenLane v1.0
-*A downloadable version is also available*
+*A downloadable version of this file is also available*.
+
 To install the necessary tools, please refer to the link below. Follow the instructions provided and run the example given to verify that the OpenLANE tools are installed correctly. Ensure that all commands are executed as the `root` user.
 
 | OpenROAD and some supporting tools. | [OpenLANE Ubuntu Installation](https://openlane.readthedocs.io/en/latest/getting_started/installation/installation_ubuntu.html) |
