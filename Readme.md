@@ -195,9 +195,9 @@ To check the various layout results in `klayout`, add the Library Exchange File 
 **To view the results, go to `File` ⮕ `Open` and navigate to the `results` folder inside the `runs` directory. Open any folder within `results` and select a `.def` file to view the layout in the workspace.** Similarly, the `GDSII` file will be located inside the `signoff` directory. Navigate to this directory and open the `.gds` file to view it.
 
 
-|  ![KLayout Full Adder Floorplan](https://github.com/user-attachments/assets/f87e680a-656a-4b24-920c-b71f3c0e76f4)|
+|![Full Adder GDS](https://github.com/user-attachments/assets/16f3dd95-e201-4f51-bdb3-39a1dadcecd2)|
 | :--------------------------------------: |
-| *Figure 1. KLayout Full Adder Floorplan* |
+| *Figure 1. Full Adder GDS in KLayout* |
 
 ##  (Miscellaneous) Running with Constraints
 
